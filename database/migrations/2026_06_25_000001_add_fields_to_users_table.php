@@ -16,6 +16,8 @@ return new class extends Migration
             $table->text('bio')->nullable()->after('avatar');
             $table->timestamp('last_login_at')->nullable()->after('bio');
             $table->date('last_coin_at')->nullable()->after('last_login_at');
+            $table->integer('coin_balance')->unsigned()->default(0)->after('last_coin_at');
+            $table->decimal('gold_balance', 10, 2)->default(0)->after('coin_balance');
         });
     }
 

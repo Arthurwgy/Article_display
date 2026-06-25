@@ -9,9 +9,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('article_paid_access', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('article_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->ulid('id')->primary();
+            $table->ulid('article_id');
+            $table->ulid('user_id');
+            $table->foreign('article_id')->references('id')->on('articles')->cascadeOnDelete();
+            $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
             $table->decimal('amount_paid', 10, 2);
             $table->timestamp('created_at')->useCurrent();
 

@@ -9,12 +9,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('article_review_logs', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('article_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('reviewer_id')
-                  ->nullable()
-                  ->constrained('users')
-                  ->nullOnDelete();
+            $table->ulid('id')->primary();
+            $table->ulid('article_id');
+            $table->ulid('reviewer_id')->nullable();
             $table->enum('action', [
                 'submit',
                 'auto_reject',
@@ -32,6 +29,8 @@ return new class extends Migration
             $table->json('sensitive_word_hit')->nullable();
             $table->timestamp('created_at')->useCurrent();
 
+            $table->foreign('article_id')->references('id')->on('articles')->cascadeOnDelete();
+            $table->foreign('reviewer_id')->references('id')->on('users')->nullOnDelete();
             $table->index('article_id');
             $table->index('reviewer_id');
             $table->index('action');

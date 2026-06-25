@@ -9,11 +9,13 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('article_tag', function (Blueprint $table) {
-            $table->foreignId('article_id')->constrained()->cascadeOnDelete();
-            $table->foreignId('tag_id')->constrained('article_tags')->cascadeOnDelete();
+            $table->ulid('article_id');
+            $table->unsignedBigInteger('tag_id');
             $table->timestamp('created_at')->useCurrent();
 
             $table->primary(['article_id', 'tag_id']);
+            $table->foreign('article_id')->references('id')->on('articles')->cascadeOnDelete();
+            $table->foreign('tag_id')->references('id')->on('article_tags')->cascadeOnDelete();
         });
     }
 

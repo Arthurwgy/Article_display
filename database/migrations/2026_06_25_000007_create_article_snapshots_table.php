@@ -9,14 +9,15 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('article_snapshots', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('article_id')->constrained()->cascadeOnDelete();
+            $table->ulid('id')->primary();
+            $table->ulid('article_id');
             $table->integer('review_round');
             $table->string('title_snapshot', 255);
             $table->longText('content_snapshot');
             $table->string('cover_image_snapshot', 500)->nullable();
             $table->timestamp('created_at')->useCurrent();
 
+            $table->foreign('article_id')->references('id')->on('articles')->cascadeOnDelete();
             $table->unique(['article_id', 'review_round']);
         });
     }
