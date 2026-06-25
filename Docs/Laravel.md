@@ -62,20 +62,21 @@
    composer require filament/filament
    ```
 
-2. **发布前端资源**
+2. **安装 Panel 并发布前端资源**
    ```bash
-   php artisan filament:install --assets
+   php artisan filament:install --panels
    ```
+
+   > 命令会同时生成 `app/Providers/Filament/AdminPanelProvider.php` 并自动注册到 `bootstrap/providers.php`。
 
 3. **创建管理员账号**
    ```bash
-   php artisan make:filament-user
+   php artisan make:filament-user \
+     --name="admin" \
+     --email="admin@admin.com" \
+     --password="123456" \
+     --no-interaction
    ```
-   按提示输入姓名、邮箱、密码即可
-   首次创建账号时输入
-   姓名: admin
-   邮箱: admin@admin.com
-   密码: 123456
 
 4. **启动服务**
    ```bash
