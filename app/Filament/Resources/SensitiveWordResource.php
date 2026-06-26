@@ -111,7 +111,8 @@ class SensitiveWordResource extends Resource
                 \Filament\Actions\EditAction::make()->label('编辑'),
                 \Filament\Actions\DeleteAction::make()->label('删除'),
             ])
-            ->toolbarActions([]);
+            ->toolbarActions([])
+            ->searchPlaceholder('搜索敏感词 / 分组...');
     }
 
     public static function getPages(): array

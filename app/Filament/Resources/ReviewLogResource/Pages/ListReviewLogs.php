@@ -10,4 +10,6 @@ use Filament\Resources\Pages\ListRecords;
 class ListReviewLogs extends ListRecords
 {
     protected static string $resource = ReviewLogResource::class;
+
+    protected static ?string $breadcrumb = '审核日志';
 }

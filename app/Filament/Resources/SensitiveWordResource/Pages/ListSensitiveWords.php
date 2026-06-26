@@ -19,6 +19,8 @@ class ListSensitiveWords extends ListRecords
 {
     protected static string $resource = SensitiveWordResource::class;
 
+    protected static ?string $breadcrumb = '敏感词';
+
     protected function getHeaderActions(): array
     {
         return [

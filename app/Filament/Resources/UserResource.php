@@ -80,7 +80,8 @@ class UserResource extends Resource
                     ->placeholder('—'),
             ])
             ->recordActions([])
-            ->toolbarActions([]);
+            ->toolbarActions([])
+            ->searchPlaceholder('搜索昵称 / 邮箱 / ID...');
     }
 
     public static function getPages(): array

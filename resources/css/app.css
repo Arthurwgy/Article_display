@@ -7,3 +7,14 @@
     --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
         'Segoe UI Symbol', 'Noto Color Emoji';
 }
+
+/* 问题 A: 筛选 dropdown 展开时禁止页面级滚动，保持内部滚动 */
+.filament-hide-body-scrollbar[aria-expanded='true'] ~ *,
+body:has(.fi-ta-filters-dropdown > [data-state="visible"]) {
+    overflow: hidden;
+}
+
+/* flatpickr 日历弹层展开时禁止页面滚动 */
+body:has(.flatpickr-calendar:not(.inline):not([hidden])) {
+    overflow: hidden;
+}

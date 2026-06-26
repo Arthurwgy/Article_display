@@ -120,8 +120,14 @@ class ReviewLogResource extends Resource
                 Filter::make('created_at')
                     ->label('时间范围')
                     ->form([
-                        \Filament\Forms\Components\DatePicker::make('from')->label('从'),
-                        \Filament\Forms\Components\DatePicker::make('until')->label('至'),
+                        \Filament\Forms\Components\DatePicker::make('from')
+                            ->label('从')
+                            ->displayFormat('Y/m/d')
+                            ->default(now()->toDateString()),
+                        \Filament\Forms\Components\DatePicker::make('until')
+                            ->label('至')
+                            ->displayFormat('Y/m/d')
+                            ->default(now()->toDateString()),
                     ])
                     ->query(function ($query, array $data) {
                         return $query
@@ -130,7 +136,8 @@ class ReviewLogResource extends Resource
                     }),
             ])
             ->recordActions([])
-            ->toolbarActions([]);
+            ->toolbarActions([])
+            ->searchPlaceholder('搜索文章 / 审核人...');
     }
 
     public static function getPages(): array

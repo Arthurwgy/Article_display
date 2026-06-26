@@ -109,7 +109,8 @@ class CategoryResource extends Resource
             ])
             ->toolbarActions([
                 \Filament\Actions\CreateAction::make()->label('新增分类'),
-            ]);
+            ])
+            ->searchPlaceholder('搜索分类名 / Slug...');
     }
 
     public static function getPages(): array

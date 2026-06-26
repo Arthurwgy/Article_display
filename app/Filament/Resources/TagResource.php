@@ -86,7 +86,8 @@ class TagResource extends Resource
             ])
             ->toolbarActions([
                 \Filament\Actions\CreateAction::make()->label('新增标签'),
-            ]);
+            ])
+            ->searchPlaceholder('搜索标签名 / Slug...');
     }
 
     public static function getPages(): array

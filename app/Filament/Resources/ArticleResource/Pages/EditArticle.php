@@ -23,6 +23,8 @@ class EditArticle extends EditRecord
 {
     protected static string $resource = ArticleResource::class;
 
+    protected static ?string $breadcrumb = '编辑文章';
+
     protected ?string $heading = '文章详情与审核';
 
     /**

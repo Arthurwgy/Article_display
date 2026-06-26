@@ -10,4 +10,6 @@ use Filament\Resources\Pages\ListRecords;
 class ListTags extends ListRecords
 {
     protected static string $resource = TagResource::class;
+
+    protected static ?string $breadcrumb = '标签';
 }

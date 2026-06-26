@@ -69,7 +69,7 @@ class ArticleResource extends Resource
                     ->label('标题')
                     ->limit(40)
                     ->searchable()
-                    ->openUrlInNewTab(false),
+                    ->url(fn (Article $record) => ArticleResource::getUrl('edit', ['record' => $record])),
                 TextColumn::make('user.name')
                     ->label('作者')
                     ->searchable()
@@ -133,8 +133,14 @@ class ArticleResource extends Resource
                 Filter::make('created_at')
                     ->label('提交时间')
                     ->form([
-                        \Filament\Forms\Components\DatePicker::make('created_from')->label('从'),
-                        \Filament\Forms\Components\DatePicker::make('created_until')->label('至'),
+                        \Filament\Forms\Components\DatePicker::make('created_from')
+                            ->label('从')
+                            ->displayFormat('Y/m/d')
+                            ->default(now()->toDateString()),
+                        \Filament\Forms\Components\DatePicker::make('created_until')
+                            ->label('至')
+                            ->displayFormat('Y/m/d')
+                            ->default(now()->toDateString()),
                     ])
                     ->query(function (Builder $query, array $data): Builder {
                         return $query
@@ -155,7 +161,9 @@ class ArticleResource extends Resource
                 \Filament\Actions\ViewAction::make()->label('查看详情'),
                 \Filament\Actions\EditAction::make()->label('编辑'),
             ])
-            ->toolbarActions([]);
+            ->toolbarActions([])
+            ->searchPlaceholder('搜索标题 / 作者 / ID...')
+            ->filtersFormMaxHeight('24rem');
     }
 
     public static function getRelations(): array
