@@ -25,6 +25,14 @@
       </view>
     </view>
 
+    <view v-if="isLoggedIn" class="menu-section">
+      <view class="menu-item" @click="goMyArticles">
+        <text class="menu-icon">📝</text>
+        <text class="menu-text">我的文章</text>
+        <text class="menu-arrow">›</text>
+      </view>
+    </view>
+
     <view v-if="isLoggedIn" class="actions">
       <button class="btn btn-outline" @click="handleLogout">退出登录</button>
     </view>
@@ -71,6 +79,9 @@ export default {
     }
   },
   methods: {
+    goMyArticles() {
+      uni.navigateTo({ url: '/pages/mine/articles' })
+    },
     async handleLogout() {
       await this.userStore.logout()
     },
@@ -165,6 +176,23 @@ export default {
   height: 60rpx;
   background: #eee;
 }
+
+.menu-section {
+  background: #fff;
+  border-radius: 16rpx;
+  margin-bottom: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 2rpx 12rpx rgba(0, 0, 0, 0.06);
+}
+.menu-item {
+  display: flex;
+  align-items: center;
+  padding: 32rpx 40rpx;
+}
+.menu-item:active { background: #fafafa; }
+.menu-icon { font-size: 40rpx; margin-right: 20rpx; }
+.menu-text { flex: 1; font-size: 30rpx; color: #333; }
+.menu-arrow { font-size: 36rpx; color: #ccc; }
 
 .actions {
   margin-top: 40rpx;

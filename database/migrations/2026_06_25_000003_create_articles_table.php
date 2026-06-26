@@ -12,19 +12,19 @@ return new class extends Migration
             $table->ulid('id')->primary();
             $table->ulid('user_id');
             $table->foreign('user_id')->references('id')->on('users')->cascadeOnDelete();
-            $table->foreignId('category_id')
-                  ->nullable()
-                  ->constrained('article_categories')
-                  ->nullOnDelete();
+            $table->ulid('category_id')
+                  ->nullable();
+            $table->foreign('category_id')->references('id')->on('article_categories')->nullOnDelete();
             $table->enum('status', [
                 'draft',
                 'pending',
-                'pending_approved',
+                'first_pass',
                 'published',
-                'rejected',
-                'revision_required',
-                'second_review',
-                'final_rejected',
+                'first_reject',
+                'modify_required',
+                'appealing',
+                'second_pass',
+                'second_reject',
                 'unlisted',
             ])->default('draft');
             $table->string('title', 255);

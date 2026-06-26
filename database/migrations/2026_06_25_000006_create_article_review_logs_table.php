@@ -15,14 +15,12 @@ return new class extends Migration
             $table->enum('action', [
                 'submit',
                 'auto_reject',
-                'approve',
-                'reject',
-                'revision_required',
+                'first_pass',
+                'first_reject',
+                'modify_required',
                 'appeal',
-                'second_approve',
+                'second_pass',
                 'second_reject',
-                'publish',
-                'unlist',
             ]);
             $table->text('reason')->nullable();
             $table->integer('review_round')->default(1);

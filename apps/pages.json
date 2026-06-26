@@ -36,6 +36,30 @@
       "style": {
         "navigationBarTitleText": "找回密码"
       }
+    },
+    {
+      "path": "pages/article/detail",
+      "style": {
+        "navigationBarTitleText": "文章详情"
+      }
+    },
+    {
+      "path": "pages/article/edit",
+      "style": {
+        "navigationBarTitleText": "写文章"
+      }
+    },
+    {
+      "path": "pages/mine/articles",
+      "style": {
+        "navigationBarTitleText": "我的文章"
+      }
+    },
+    {
+      "path": "pages/article/review-status",
+      "style": {
+        "navigationBarTitleText": "审核进度"
+      }
     }
   ],
   "tabBar": {
